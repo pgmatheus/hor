@@ -1,8 +1,9 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { NativeBaseProvider, Box } from "native-base";
 import styled from "styled-components/native";
+import Day from "./src/pages/day";
 
 const StyledText = styled.Text`
 	color: #d3a0b1;
@@ -15,8 +16,12 @@ const StyledView = styled.View`
 export default function App() {
 	return (
 		<NativeBaseProvider>
-			<Box>Hello world</Box>
-			<Text>Hello world2</Text>
+			<ImageBackground
+				source={require("./src/background/00.png")}
+				style={styles.container}
+			>
+				<Day />
+			</ImageBackground>
 		</NativeBaseProvider>
 	);
 }
@@ -24,8 +29,10 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
+		resizeMode: "cover", // or 'contain' to adjust the image size
 		justifyContent: "center",
+		alignItems: "center",
+		width: "100%",
+		height: "100%",
 	},
 });
