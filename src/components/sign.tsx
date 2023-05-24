@@ -1,24 +1,31 @@
 import { StyleSheet, Text, View } from "react-native";
 import { translateText } from "../utilities/transl";
+import { zodiacSigns } from "../database/database";
+import { retrieveSettings } from "../utilities/get_settings";
 
 import React, { useState, useEffect } from "react";
 
-export default function Sign(props) {
-	const [text_Trans, setText_Trans] = useState("b");
+type SignProps = {
+	txt: string;
+	number: number;
+};
 
-	useEffect(() => {
-		// Fetch the translation when the component mounts
-		translateText(props.txt, "fr").then((result) => {
-			setText_Trans(result);
+export default function Sign(props: SignProps) {
+	const [text_Trans, setText_Trans] = useState(zodiacSigns[props.number]);
+
+	/* 	useEffect(() => {
+		retrieveSettings().then((result) => {
+			if (!result.error) {
+				setText_Trans(result.result.zodiacSigns[props.number]);
+			}
 		});
-	}, []);
+	}, []); */
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.avatar}></View>
 			<Text style={styles.txt}>{props.txt}</Text>
 			<Text>{text_Trans}</Text>
-			<Text>q</Text>
 		</View>
 	);
 }

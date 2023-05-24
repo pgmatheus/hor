@@ -10,9 +10,8 @@ export const translateText = async (
 			from: source_lang,
 			to: dest_lang,
 		}); // Translate from English to Spanish (you can change the language codes)
-		return translation;
+		return { text: translation, error: false };
 	} catch (error) {
-		console.log(error);
-		return text;
+		return { text: text, error: true };
 	}
 };

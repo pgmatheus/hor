@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { NativeBaseProvider, Box } from "native-base";
 import styled from "styled-components/native";
 import Day from "./src/pages/day";
+import { first_run } from "./src/utilities/load_settings";
+
+/* import { retrieveSettings } from "../utilities/get_settings"; */
 
 const StyledText = styled.Text`
 	color: #d3a0b1;
@@ -13,7 +16,17 @@ const StyledView = styled.View`
 	background-color: papayawhip;
 `;
 
+first_run();
+
 export default function App() {
+	/* 	useEffect(() => {
+		retrieveSettings().then((result) => {
+			if (!result.error) {
+				setText_Trans(result.result.zodiacSigns[props.number]);
+			}
+		});
+	}, []); */
+
 	return (
 		<NativeBaseProvider>
 			<ImageBackground

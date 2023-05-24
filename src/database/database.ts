@@ -1,4 +1,4 @@
-export const zodiacSigns = {
+export const zodiacSigns: { [key: number]: string } = {
 	0: "Aries",
 	1: "Taurus",
 	2: "Gemini",
