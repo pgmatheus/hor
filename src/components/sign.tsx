@@ -1,30 +1,24 @@
 import { StyleSheet, Text, View } from "react-native";
-import translate from "translate";
+import { translateText } from "../utilities/transl";
+
 import React, { useState, useEffect } from "react";
 
 export default function Sign(props) {
-	const [translatedText, setTranslatedText] = useState("");
+	const [text_Trans, setText_Trans] = useState("b");
 
 	useEffect(() => {
 		// Fetch the translation when the component mounts
-		translateText();
+		translateText(props.txt, "fr").then((result) => {
+			setText_Trans(result);
+		});
 	}, []);
-
-	const translateText = async () => {
-		try {
-			const text = "Hello world"; // The text you want to translate
-			const translation = await translate(text, { from: "en", to: "fr" }); // Translate from English to Spanish (you can change the language codes)
-			setTranslatedText(translation);
-		} catch (error) {
-			console.error("Translation error:", error);
-		}
-	};
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.avatar}></View>
 			<Text style={styles.txt}>{props.txt}</Text>
-			<Text>{translatedText}</Text>
+			<Text>{text_Trans}</Text>
+			<Text>q</Text>
 		</View>
 	);
 }

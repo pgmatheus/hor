@@ -1,18 +1,18 @@
-import { Translate } from "translate";
+import translate from "translate";
 
-// Create a new instance of the Translate class
-const translator = new Translate();
-
-// Set the source and target languages
-translator.from("en").to("fr");
-
-// Function to translate text
-async function transl(text: string): Promise<string> {
+export const translateText = async (
+	text: string,
+	dest_lang: string,
+	source_lang = "en"
+) => {
 	try {
-		const translatedText = await translator.translate(text);
-		return translatedText;
+		const translation = await translate(text, {
+			from: source_lang,
+			to: dest_lang,
+		}); // Translate from English to Spanish (you can change the language codes)
+		return translation;
 	} catch (error) {
-		console.error("Translation error:", error);
-		return text; // Return the original text if translation fails
+		console.log(error);
+		return text;
 	}
-}
+};
