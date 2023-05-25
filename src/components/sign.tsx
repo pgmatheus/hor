@@ -13,19 +13,18 @@ type SignProps = {
 export default function Sign(props: SignProps) {
 	const [text_Trans, setText_Trans] = useState(zodiacSigns[props.number]);
 
-	/* 	useEffect(() => {
+	useEffect(() => {
 		retrieveSettings().then((result) => {
 			if (!result.error) {
 				setText_Trans(result.result.zodiacSigns[props.number]);
 			}
 		});
-	}, []); */
+	}, []);
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.avatar}></View>
-			<Text style={styles.txt}>{props.txt}</Text>
-			<Text>{text_Trans}</Text>
+			<Text style={styles.txt}>{text_Trans}</Text>
 		</View>
 	);
 }
@@ -38,8 +37,8 @@ const styles = StyleSheet.create({
 	},
 	avatar: {
 		borderRadius: 50,
-		width: 70,
-		height: 70,
+		width: 65,
+		height: 65,
 		backgroundColor: "white",
 		marginLeft: 15,
 		marginRight: 15,
@@ -47,6 +46,6 @@ const styles = StyleSheet.create({
 	},
 	txt: {
 		color: "white",
-		marginBottom: 15,
+		marginBottom: 25,
 	},
 });

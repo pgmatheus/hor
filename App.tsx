@@ -5,6 +5,12 @@ import { NativeBaseProvider, Box } from "native-base";
 import styled from "styled-components/native";
 import Day from "./src/pages/day";
 import { first_run } from "./src/utilities/load_settings";
+import { AppContextProvider } from "./src/context/provider";
+import { useAppContext } from "./src/context/hook";
+import { SignPrediction } from "./src/pages/sign_prediction";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 /* import { retrieveSettings } from "../utilities/get_settings"; */
 
@@ -15,37 +21,33 @@ const StyledText = styled.Text`
 const StyledView = styled.View`
 	background-color: papayawhip;
 `;
-
+const Stack = createStackNavigator();
 first_run();
 
 export default function App() {
-	/* 	useEffect(() => {
-		retrieveSettings().then((result) => {
-			if (!result.error) {
-				setText_Trans(result.result.zodiacSigns[props.number]);
-			}
-		});
-	}, []); */
-
 	return (
-		<NativeBaseProvider>
-			<ImageBackground
-				source={require("./src/background/00.png")}
-				style={styles.container}
-			>
-				<Day />
-			</ImageBackground>
-		</NativeBaseProvider>
+		<NavigationContainer>
+			<Stack.Navigator screenOptions={{ headerShown: false }}>
+				<Stack.Screen
+					name="Day"
+					component={Day}
+					initialParams={{ sign_show_prediction: -1 }}
+				/>
+				<Stack.Screen name="SignPrediction" component={SignPrediction} />
+			</Stack.Navigator>
+		</NavigationContainer>
 	);
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		resizeMode: "cover", // or 'contain' to adjust the image size
-		justifyContent: "center",
-		alignItems: "center",
-		width: "100%",
-		height: "100%",
-	},
-});
+{
+	/*  */
+}
+/*  */
+{
+	/* <ImageBackground
+					source={require("./src/background/00.png")}
+					style={styles.container}
+				>
+					<Day />
+				</ImageBackground> */
+}

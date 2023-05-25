@@ -9,17 +9,22 @@ export const first_run = async () => {
 		try {
 			const systemLanguage = Localization.locale;
 			const subs_lang = systemLanguage.substring(0, 2).toLocaleLowerCase();
-			const verifylang = await translateText("initial", subs_lang);
-			if (verifylang.error) {
-				throw new Error("language not suported");
-			}
+
 			let transl_sign: { [key: number]: string } = {};
-			for (let key in zodiacSigns) {
-				const signTransl = await translateText(zodiacSigns[key], subs_lang);
-				if (signTransl.error) {
-					throw new Error("error getting signs");
-				} else {
-					transl_sign[key] = signTransl.text;
+			if (subs_lang == "en") {
+				transl_sign = zodiacSigns;
+			} else {
+				const verifylang = await translateText("initial", subs_lang);
+				if (verifylang.error) {
+					throw new Error("language not suported");
+				}
+				for (let key in zodiacSigns) {
+					const signTransl = await translateText(zodiacSigns[key], subs_lang);
+					if (signTransl.error) {
+						throw new Error("error getting signs");
+					} else {
+						transl_sign[key] = signTransl.text;
+					}
 				}
 			}
 
