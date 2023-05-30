@@ -3,6 +3,8 @@ import * as Localization from "expo-localization";
 import { translateText } from "./transl";
 import { zodiacSigns } from "../database/database";
 
+// Make sure to replace 'YOUR_AD_UNIT_ID' with your actual ad unit ID
+
 export const first_run = async () => {
 	const settingsString = await AsyncStorage.getItem("settings"); // verify if exists previous settings
 	if (settingsString === null) {

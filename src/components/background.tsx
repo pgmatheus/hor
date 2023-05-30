@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { ReactNode } from "react";
+import { Header } from "./header";
+import AdContainer from "./ads";
+import { color } from "react-native-reanimated";
 
 interface IProps {
 	children: ReactNode;
@@ -8,18 +11,25 @@ interface IProps {
 export const Background = ({ children }: IProps) => {
 	return (
 		<ImageBackground source={require("../img/00.png")} style={styles.container}>
-			{children}
+			<Header />
+			{/* <Text style={styles.test}>qqqqqqqqqqqqqqqqqqqqqqqqqs</Text> */}
+			{/* {children} */}
+			{/* <AdContainer /> */}
 		</ImageBackground>
 	);
 };
 
+{
+	/*  */
+}
+
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		resizeMode: "cover", // or 'contain' to adjust the image size
-		justifyContent: "center",
-		alignItems: "center",
 		width: "100%",
 		height: "100%",
+		position: "relative",
+	},
+	test: {
+		color: "white",
 	},
 });
